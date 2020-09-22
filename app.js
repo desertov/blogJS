@@ -12,15 +12,20 @@ const app = express()
  app.use(bodyParser.json())
 
 //Configurando o HandleBars
+ app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+ app.set('view engine', 'handlebars')
 
-app.listen(3000 || process.env.PORT, () =>{
+
+ app.listen(3000 || process.env.PORT, () =>{
     console.log('Estou ouvindo')
-})
+ })
 
-app.get('/', (req, res) =>{
+ 
+
+ app.get('/', (req, res) =>{
     res.send('Página Inicial')
-})
+}) 
 
-app.get('/documentacao', (req, res) =>{
+ app.get('/documentacao', (req, res) =>{
     res.send('Documentação')
-})
+ })
