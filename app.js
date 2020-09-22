@@ -3,9 +3,12 @@
 import express from 'express'
 import handlebars from 'express-handlebars'
 import bodyParser from 'body-parser'
+import admin from './routes/admin.js'
+import path from 'path'
 // import mongoose from 'mongoose'
 
 const app = express()
+const __dirname = path.resolve()
 
 //Configurando o BodyParser
  app.use(bodyParser.urlencoded({extended: true}))
@@ -20,12 +23,22 @@ const app = express()
     console.log('Estou ouvindo')
  })
 
- 
+//Public 
+ app.use(express.static(path.join(__dirname,'public')))
 
- app.get('/', (req, res) =>{
-    res.send('Página Inicial')
-}) 
 
- app.get('/documentacao', (req, res) =>{
-    res.send('Documentação')
- })
+ //Rotas 
+
+//  app.get('/', (req, res) =>{
+//     res.send('Página Inicial')
+// }) 
+
+
+// Grupo de Rotas
+ app.use('/admin', admin)
+
+
+
+//  app.get('/documentacao', (req, res) =>{
+//     res.send('Documentação')
+//  })
