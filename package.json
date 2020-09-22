@@ -1,3 +1,6 @@
 {
-   "type": "module"
+   "type": "module",
+   "dependencies": {
+      "expresss": "0.0.0"
+   }
 }
