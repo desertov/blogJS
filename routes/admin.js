@@ -6,10 +6,15 @@ router.get('/', (req, res) =>{
 })
 
 router.get('/posts', (req, res) =>{
-    res.send('Aqui estamos dentro de /admin')
+    res.render('admin/posts')
 })
 
 router.get('/categorias', (req, res) =>{
-    res.send('Aqui estamos dentro de /admin')
+    res.render('admin/categorias')
 })
+
+router.get('/categorias/add', (req, res) =>{
+    res.render('admin/addcategorias')
+})
+
 export default router
