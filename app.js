@@ -5,7 +5,7 @@ import handlebars from 'express-handlebars'
 import bodyParser from 'body-parser'
 import admin from './routes/admin.js'
 import path from 'path'
-// import mongoose from 'mongoose'
+import mongoose from 'mongoose'
 
 const app = express()
 const __dirname = path.resolve()
@@ -18,7 +18,15 @@ const __dirname = path.resolve()
  app.engine('handlebars', handlebars({defaultLayout: 'main'}))
  app.set('view engine', 'handlebars')
 
+//Configurando Mongoose
+ mongoose.Promise = global.Promise
+ mongoose.connect('mongodb://localhost/blogapp', {useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+ console.log('Conectado ao mongo')
+}).catch(err =>{
+    console.log('Erro ao se conectar: ' + err)
+})
 
+//Subindo aplicação
  app.listen(3000 || process.env.PORT, () =>{
     console.log('Estou ouvindo')
  })
